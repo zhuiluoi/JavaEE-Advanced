@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="reset">从新开始一局游戏</button></br>
+    请输入要猜的数字: <input type="text" id="guessNumber"><input type="button" value="猜" id="guess"></br>
+    已经猜的次数: <span id="count">0</span> </br>
+    结果: <span id="result"></span>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        let count = 0;
+        let rightNumber = Math.floor(Math.random() * 100) + 1;
+        console.log(rightNumber);
+        $(document).ready(function() {
+
+            $("#reset").click(function() {
+                rightNumber = Math.floor(Math.random() * 100) + 1;
+                console.log(rightNumber);
+                count = 0
+                $("#count").text(count);
+                $("#result").text("");
+                $("#guessNumber").val("");
+            });
+
+            $("#guess").click(function() {
+                count++;
+                $("#count").text(count);
+                let guessNumber = $("#guessNumber").val();
+                if(guessNumber > rightNumber) {
+                    $("#result").text("猜大了");
+                } else if (guessNumber < rightNumber){
+                    $("#result").text("猜小了");
+                } else {
+                    $("#result").text("恭喜你！猜对了");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
